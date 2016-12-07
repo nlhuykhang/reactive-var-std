@@ -5,7 +5,7 @@ var b = require('../index.js');
 var Tracker = b.Tracker;
 var StdReactiveVar = b.StdReactiveVar;
 
-a = new StdReactiveVar(1);
+var a = new StdReactiveVar(1);
 
 Tracker.autorun(() => {
   console.log('-------------------------------------');
