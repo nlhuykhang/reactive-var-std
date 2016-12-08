@@ -1,10 +1,149 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Meteor Reactive Var - Standalone Version</title>
-  </head>
-  <body>
-    <script src="index.js"></script>
-  </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : PlainDisplay
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20140309
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Standalone Reactive Var From Meteor</title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <link href="http://fonts.googleapis.com/css?family=Varela" rel="stylesheet" />
+  <link href="default.css" rel="stylesheet" type="text/css" media="all" />
+  <!-- <link href="fonts.css" rel="stylesheet" type="text/css" media="all" /> -->
+
+  <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="banner">
+      <div class="container">
+        <div class="title">
+          <h2>Standalone Reactive Var From Meteor</h2>
+          <span class="byline" style="text-transform: none;">Standalone version lets you write reactive code outside of Meteor </span>
+        </div>
+        <ul class="actions">
+          <li>
+            <a href="https://github.com/nlhuykhang/reactive-var-std" class="button">Github</a>
+            <a href="https://docs.meteor.com/api/reactive-var.html" class="button">Meteor version</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="extra" class="container">
+      <div class="title">
+        <h2>Demo</h2>
+        <!-- <span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span> -->
+       </div>
+       <div class="">
+         <div class="box" style="">
+           <div class="" style="display: inline-flex;">
+             <div class="" style="margin: 0px 40px;">
+               <a id="increase-btn" class="button" style="margin: 0">Increase Counter</a>
+             </div>
+             <div class="" style="margin: 0px 40px;">
+               <span id="counter-span" style="font-size: 20px; font-weight: 600">Counter: 10</span>
+             </div>
+             <div class="" style="margin: 0px 40px;">
+               <a id="decrease-btn" class="button" style="margin: 0">Decrease Counter</a>
+             </div>
+           </div>
+         </div>
+       </div>
+
+       <div class="box" style="margin-top: 10px; text-align: left">
+         <h3>HTML</h3>
+         <pre class="prettyprint">
+           &lt;div&gt;
+             &lt;a id="increase-btn"&gt;Increase Counter&lt;/a&gt;
+           &lt;/div&gt;
+           &lt;div&gt;
+             &lt;span id="counter-span"&gt;Counter: 0&lt;/span&gt;
+           &lt;/div&gt;
+           &lt;div&gt;
+             &lt;a id="decrease-btn"&gt;Decrease Counter&lt;/a&gt;
+           &lt;/div&gt;
+         </pre>
+
+         <h3>JS</h3>
+         <pre class="prettyprint">
+           'use strict';
+
+           var module = require('reactive-var-std');
+
+           var Tracker = module.Tracker;
+           var StdReactiveVar = module.StdReactiveVar;
+
+           // create a create source
+           var reactive = new StdReactiveVar(0);
+
+          // increase the counter
+           document.getElementById('increase-btn').addEventListener('click', function() {
+             var count = reactive.getNonReactive();
+             reactive.set(count + 1);
+           });
+
+           // decrease the counter
+           document.getElementById('decrease-btn').addEventListener('click', function() {
+             var count = reactive.getNonReactive();
+             reactive.set(count - 1);
+           });
+
+           var spanEl = document.getElementById('counter-span');
+
+           // wrap the counter inside Tracker.autorun to watch the counter for changes
+           // and update the view if there are changes
+           Tracker.autorun(function() {
+             spanEl.innerText = 'Counter: ' + reactive.get();
+           });
+
+         </pre>
+       </div>
+    </div>
+    <!-- <div id="featured">
+      <div class="container">
+        <div class="title">
+          <h2>Install</h2>
+        </div>
+        <div class="box" style="text-align: left">
+          <pre class="prettyprint">
+            npm install --save reactive-var-std
+          </pre>
+        </div>
+      </div>
+
+    </div> -->
+    <!-- <div id="page" class="container">
+      <div class="title">
+        <h2>Nulla luctus eleifend</h2>
+        <span class="byline">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</span> </div>
+      <p> Vivamus fermentum nibh in augue. Praesent a lacus at urna congue rutrum. Nulla enim eros nibh. Duis enim nulla, luctus eu, dapibus lacinia, venenatis id, quam. Vestibulum imperdiet, magna nec eleifend rutrum, nunc lectus vestibulum velit, euismod
+        lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor.</p>
+      <ul class="actions">
+        <li><a href="#" class="button">Etiam posuere</a></li>
+      </ul>
+    </div> -->
+  </div>
+  <div id="copyright" class="container">
+    <p>
+      License: MIT | Credits: <a href="https://github.com/meteor">MDG</a> | Original Version: <a href="https://github.com/meteor/meteor/tree/master/packages/reactive-var">ReactiveVar</a>
+    </p>
+
+  </div>
+
+  <script src="index.js"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+
 </html>

@@ -13,9 +13,26 @@ module.exports = function (grunt) {
     },
     copy: {
       demo: {
-        files: {
-          'build/index.html': ['demo/index.html']
-        }
+        files: [
+          {
+            expand: true,
+            src: ['demo/font/*'],
+            dest: 'build/font/',
+            flatten: true,
+          },
+          {
+            src: 'demo/index.html',
+            dest: 'build/index.html',
+          },
+          {
+            src: 'demo/default.css',
+            dest: 'build/default.css',
+          },
+          {
+            src: 'demo/fonts.css',
+            dest: 'build/fonts.css',
+          }
+        ]
       }
     },
 

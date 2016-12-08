@@ -1,20 +1,23 @@
 'use strict';
 
-var b = require('../index.js');
-var Tracker = b.Tracker;
-var StdReactiveVar = b.StdReactiveVar;
+var module = require('../index.js');
+var Tracker = module.Tracker;
+var StdReactiveVar = module.StdReactiveVar;
 
-var a = new StdReactiveVar(1);
+var reactive = new StdReactiveVar(0);
 
-Tracker.autorun(() => {
-  console.log('-------------------------------------');
-  console.log(a.getOld());
-  console.log(a.get());
-  console.log('-------------------------------------');
+document.getElementById('increase-btn').addEventListener('click', function() {
+  var count = reactive.getNonReactive();
+  reactive.set(count + 1);
 });
 
-setInterval(() => {
-  'use strict';
-  var cur = a.getNonReactive();
-  a.set(cur + 1);
-}, 1000);
+document.getElementById('decrease-btn').addEventListener('click', function() {
+  var count = reactive.getNonReactive();
+  reactive.set(count - 1);
+});
+
+var spanEl = document.getElementById('counter-span');
+
+Tracker.autorun(function() {
+  spanEl.innerText = 'Counter: ' + reactive.get();
+});
