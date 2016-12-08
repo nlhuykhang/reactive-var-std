@@ -1,24 +1,27 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var b = require('../index.js');
-var Tracker = b.Tracker;
-var StdReactiveVar = b.StdReactiveVar;
+var module = require('../index.js');
+var Tracker = module.Tracker;
+var StdReactiveVar = module.StdReactiveVar;
 
-var a = new StdReactiveVar(1);
+var reactive = new StdReactiveVar(0);
 
-Tracker.autorun(() => {
-  console.log('-------------------------------------');
-  console.log(a.getOld());
-  console.log(a.get());
-  console.log('-------------------------------------');
+document.getElementById('increase-btn').addEventListener('click', function() {
+  var count = reactive.getNonReactive();
+  reactive.set(count + 1);
 });
 
-setInterval(() => {
-  'use strict';
-  var cur = a.getNonReactive();
-  a.set(cur + 1);
-}, 1000);
+document.getElementById('decrease-btn').addEventListener('click', function() {
+  var count = reactive.getNonReactive();
+  reactive.set(count - 1);
+});
+
+var spanEl = document.getElementById('counter-span');
+
+Tracker.autorun(function() {
+  spanEl.innerText = 'Counter: ' + reactive.get();
+});
 
 },{"../index.js":"diffex"}],2:[function(require,module,exports){
 'use strict';
