@@ -1,9 +1,9 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var module = require('../index.js');
-var Tracker = module.Tracker;
-var StdReactiveVar = module.StdReactiveVar;
+var StdReactiveVar = require('../index.js');
+var Tracker = StdReactiveVar.Tracker;
+var StdReactiveVar = StdReactiveVar.default;
 
 var reactive = new StdReactiveVar(0);
 
@@ -29,15 +29,7 @@ Tracker.autorun(function() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _stdReactiveVar = require('./std-reactive-var.js');
-
-Object.defineProperty(exports, 'StdReactiveVar', {
-  enumerable: true,
-  get: function get() {
-    return _stdReactiveVar.StdReactiveVar;
-  }
-});
+exports.Tracker = undefined;
 
 var _trackr = require('trackr');
 
@@ -48,14 +40,19 @@ Object.defineProperty(exports, 'Tracker', {
   }
 });
 
+var _stdReactiveVar = require('./std-reactive-var');
+
+var _stdReactiveVar2 = _interopRequireDefault(_stdReactiveVar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./std-reactive-var.js":3,"trackr":47}],3:[function(require,module,exports){
+
+exports.default = _stdReactiveVar2.default; // Package goes here
+},{"./std-reactive-var":3,"trackr":47}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.StdReactiveVar = undefined;
 
 var _keys = require('babel-runtime/core-js/object/keys');
 
@@ -75,10 +72,9 @@ var _trackr2 = _interopRequireDefault(_trackr);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var StdReactiveVar = exports.StdReactiveVar = function () {
+var StdReactiveVar = function () {
   function StdReactiveVar(initialValue, equalsFunc) {
     (0, _classCallCheck3.default)(this, StdReactiveVar);
-
 
     this._oldValue = null;
     this._curValue = initialValue;
@@ -90,13 +86,14 @@ var StdReactiveVar = exports.StdReactiveVar = function () {
 
   (0, _createClass3.default)(StdReactiveVar, [{
     key: '_isEqual',
-    value: function _isEqual(oldVal, newVal) {
-      if (oldVal != newVal) {
+    value: function _isEqual(newVal) {
+      var curValue = this._curValue;
+
+      if (curValue !== newVal) {
         return false;
-      } else {
-        // XXX: what is this? so true if oldVal is undefined, null, or object? why?
-        return !oldVal || typeof oldVal === 'number' || typeof oldVal === 'boolean' || typeof oldVal === 'string';
       }
+      // XXX: what is this? so true if curValue is undefined, null, or object? why?
+      return !curValue || typeof curValue === 'number' || typeof curValue === 'boolean' || typeof curValue === 'string';
     }
   }, {
     key: 'get',
@@ -119,8 +116,11 @@ var StdReactiveVar = exports.StdReactiveVar = function () {
   }, {
     key: 'set',
     value: function set(newValue) {
+      if (this._equalFunc && this._equalFunc(this._curValue, newValue)) {
+        return;
+      }
 
-      if ((this._equalFunc || this._isEqual)(this._curValue, newValue)) {
+      if (this._isEqual(newValue)) {
         return;
       }
 
@@ -142,6 +142,8 @@ var StdReactiveVar = exports.StdReactiveVar = function () {
   }]);
   return StdReactiveVar;
 }();
+
+exports.default = StdReactiveVar;
 },{"babel-runtime/core-js/object/keys":5,"babel-runtime/helpers/classCallCheck":6,"babel-runtime/helpers/createClass":7,"trackr":47}],4:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/object/define-property"), __esModule: true };
 },{"core-js/library/fn/object/define-property":8}],5:[function(require,module,exports){
