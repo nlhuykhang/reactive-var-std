@@ -1,4 +1,5 @@
 // Package goes here
-export { StdReactiveVar } from './std-reactive-var.js';
+import StdReactiveVar from './std-reactive-var';
 
-export { default as Tracker} from 'trackr';
+export default StdReactiveVar;
+export { default as Tracker } from 'trackr';

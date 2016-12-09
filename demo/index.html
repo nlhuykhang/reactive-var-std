@@ -80,10 +80,11 @@ Released   : 20140309
          <pre class="prettyprint">
            'use strict';
 
-           var module = require('reactive-var-std');
+           var StdReactiveVar = require('reactive-var-std');
 
-           var Tracker = module.Tracker;
-           var StdReactiveVar = module.StdReactiveVar;
+           var Tracker = StdReactiveVar.Tracker;
+           var StdReactiveVar = StdReactiveVar.default;
+
 
            // create a create source
            var reactive = new StdReactiveVar(0);

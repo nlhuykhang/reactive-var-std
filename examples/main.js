@@ -1,6 +1,5 @@
-const b = require('reactive-var-std');
-const Tracker = b.Tracker;
-const StdReactiveVar = b.StdReactiveVar;
+var Tracker = require('../index.js').Tracker;
+var StdReactiveVar = require('../index.js').default;
 
 a = new StdReactiveVar(1);
 

@@ -11,8 +11,15 @@ npm install --save reactive-var-std
 
 ## Usage
 
+##### ES6
+
 ```javascript
-import { StdReactiveVar, Tracker } from 'reactive-var-std';
+import StdReactiveVar, { Tracker } from 'reactive-var-std';
+
+// or if you do not use ES6
+// var StdReactiveVar = require('reactive-var-std');
+// var Tracker = StdReactiveVar.Tracker;
+// var StdReactiveVar = StdReactiveVar.default;
 
 // create a creative var instance
 const reactive = new StdReactiveVar(0);
@@ -32,13 +39,43 @@ reactive.set(10);
 // ---> the console will show: 10
 ```
 
+##### ES5
+
+```javascript
+var StdReactiveVar = require('reactive-var-std');
+var Tracker = StdReactiveVar.Tracker;
+var StdReactiveVar = StdReactiveVar.default;
+
+// create a creative var instance
+var reactive = new StdReactiveVar(0);
+
+// wrap the reactive instance inside a computation block created by Tracker.autorun
+Tracker.autorun(function() {
+  // log the value whenever it changes
+  console.log(reactive.get());
+});
+
+// change the value 1st time
+reactive.set(1);
+// ---> the console will show: 1
+
+// change the value 1st time
+reactive.set(10);
+// ---> the console will show: 10
+```
+
 ## API
 
 ### StdReactiveVar(v:Any)
+
 ### .get()
+
 ### .set(v:Any)
+
 ### .getOld()
+
 ### .getNonReactive()
+
 
 ## License
 

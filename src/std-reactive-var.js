@@ -1,8 +1,7 @@
 import Tracker from 'trackr';
 
-export class StdReactiveVar {
+export default class StdReactiveVar {
   constructor(initialValue, equalsFunc) {
-
     this._oldValue = null;
     this._curValue = initialValue;
 
@@ -11,18 +10,19 @@ export class StdReactiveVar {
     this._dep = new Tracker.Dependency();
   }
 
-  _isEqual(oldVal, newVal) {
-    if (oldVal != newVal) {
+  _isEqual(newVal) {
+    const curValue = this._curValue;
+
+    if (curValue !== newVal) {
       return false;
-    } else {
-      // XXX: what is this? so true if oldVal is undefined, null, or object? why?
-      return (
-        (!oldVal) ||
-        (typeof oldVal === 'number') ||
-        (typeof oldVal === 'boolean') ||
-        (typeof oldVal === 'string')
-      );
     }
+      // XXX: what is this? so true if curValue is undefined, null, or object? why?
+    return (
+      (!curValue) ||
+      (typeof curValue === 'number') ||
+      (typeof curValue === 'boolean') ||
+      (typeof curValue === 'string')
+    );
   }
 
   get() {
@@ -41,8 +41,11 @@ export class StdReactiveVar {
   }
 
   set(newValue) {
+    if (this._equalFunc && this._equalFunc(this._curValue, newValue)) {
+      return;
+    }
 
-    if ((this._equalFunc || this._isEqual)(this._curValue, newValue)) {
+    if (this._isEqual(newValue)) {
       return;
     }
 
@@ -53,7 +56,7 @@ export class StdReactiveVar {
   }
 
   toString() {
-    return `StdReactiveVar{${this.get()}}`
+    return `StdReactiveVar{${this.get()}}`;
   }
 
   _numListeners() {

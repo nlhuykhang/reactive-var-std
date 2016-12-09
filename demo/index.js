@@ -1,8 +1,8 @@
 'use strict';
 
-var module = require('../index.js');
-var Tracker = module.Tracker;
-var StdReactiveVar = module.StdReactiveVar;
+var StdReactiveVar = require('../index.js');
+var Tracker = StdReactiveVar.Tracker;
+var StdReactiveVar = StdReactiveVar.default;
 
 var reactive = new StdReactiveVar(0);
 
