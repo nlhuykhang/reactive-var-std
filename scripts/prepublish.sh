@@ -1,3 +1,8 @@
+echo "> Start Cleaning"
+rm -rf dist
+mkdir dist dist/umd dist/common
+echo "> Complete Cleaning"
+echo ""
 echo "> Start transpiling ES2015"
 echo ""
 ./node_modules/.bin/babel --plugins "transform-runtime" src --ignore __tests__  --out-dir ./dist/common

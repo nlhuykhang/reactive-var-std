@@ -17,7 +17,7 @@
     "testonly": "mocha $npm_package_options_mocha",
     "test": "npm run lint && npm run testonly",
     "test-watch": "npm run testonly -- --watch --watch-extensions js",
-    "start": "babel src -d dist --watch"
+    "start": "babel src -d dist/common --watch"
   },
   "files": [
     "dist/common",
