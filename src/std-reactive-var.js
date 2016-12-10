@@ -41,7 +41,6 @@ export default class StdReactiveVar {
   }
 
   set(newValue) {
-    console.log('set', newValue);
     if (this._equalFunc && this._equalFunc(this._curValue, newValue)) {
       return;
     }
