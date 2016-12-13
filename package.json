@@ -1,6 +1,6 @@
 {
   "name": "reactive-var-std",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A Standalone version of ReactiveVar package from Meteor. Lets you write reactive code with ease outside of Meteor",
   "repository": {
     "type": "git",
