@@ -5,8 +5,16 @@ A Standalone version of ReactiveVar package from Meteor. Lets you write reactive
 
 ## Install
 
+##### NPM
 ```bash
 npm install --save reactive-var-std
+```
+
+##### CDN
+```html
+<script src="//cdn.jsdelivr.net/reactive-var-std/1.1.4/reactive-var-std.min.js"></script>
+<!-- OR  -->
+<script src="//cdn.jsdelivr.net/reactive-var-std/latest/reactive-var-std.min.js"></script>
 ```
 
 ## Usage
