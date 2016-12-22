@@ -1,4 +1,7 @@
 # Standalone Reactive Var
+
+[![CircleCI](https://circleci.com/gh/nlhuykhang/reactive-var-std/tree/master.svg?style=shield)](https://circleci.com/gh/nlhuykhang/reactive-var-std/tree/master)
+
 A Standalone version of ReactiveVar package from Meteor. Lets you write reactive code with ease outside of Meteor
 
 [Check out the demo here](https://nlhuykhang.github.io/reactive-var-std/)
