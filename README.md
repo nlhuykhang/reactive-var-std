@@ -1,6 +1,6 @@
 # Standalone Reactive Var
 
-[![CircleCI](https://circleci.com/gh/nlhuykhang/reactive-var-std/tree/master.svg?style=shield)](https://circleci.com/gh/nlhuykhang/reactive-var-std/tree/master) [![Coverage Status](https://coveralls.io/repos/github/nlhuykhang/reactive-var-std/badge.svg?branch=master)](https://coveralls.io/github/nlhuykhang/reactive-var-std?branch=master) [![dependencies](https://david-dm.org/nlhuykhang/reactive-var-std/status.svg)](https://david-dm.org/nlhuykhang/reactive-var-std?view=list) [![dev-dependencies](https://david-dm.org/nlhuykhang/reactive-var-std/dev-status.svg)](https://david-dm.org/nlhuykhang/reactive-var-std?type=dev&view=list)
+[![CircleCI](https://circleci.com/gh/nlhuykhang/reactive-var-std/tree/master.svg?style=shield)](https://circleci.com/gh/nlhuykhang/reactive-var-std/tree/master) [![Coverage Status](https://coveralls.io/repos/github/nlhuykhang/reactive-var-std/badge.svg?branch=master)](https://coveralls.io/github/nlhuykhang/reactive-var-std?branch=master) [![npm version](https://badge.fury.io/js/reactive-var-std.svg)](https://badge.fury.io/js/reactive-var-std) [![dependencies](https://david-dm.org/nlhuykhang/reactive-var-std/status.svg)](https://david-dm.org/nlhuykhang/reactive-var-std?view=list)
 
 A Standalone version of ReactiveVar package from Meteor. Lets you write reactive code with ease outside of Meteor
 
