@@ -59,7 +59,7 @@ export default class StdReactiveVar {
     return `StdReactiveVar{${this.get()}}`;
   }
 
-  _numListeners() {
-    return Object.keys(this._dep._dependentsById).length;
-  }
+  // _numListeners() {
+  //   return Object.keys(this._dep._dependentsById).length;
+  // }
 }

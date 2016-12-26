@@ -85,6 +85,79 @@ describe('reactive var only', function() {
     target.set(undefined);
     expect(target.getOld()).to.be.null;
   });
+
+  it('getNonReactive should work', function() {
+    const target = new StdReactiveVar(undefined);
+
+    target.set(1);
+    expect(target.getNonReactive()).to.be.equal(1);
+
+    target.set('1');
+    expect(target.getNonReactive()).to.be.equal('1');
+
+    target.set(null);
+    expect(target.getNonReactive()).to.be.null;
+
+    target.set(undefined);
+    expect(target.getNonReactive()).to.be.undefined;
+  });
+
+  it('set should work', function() {
+    const target = new StdReactiveVar(undefined);
+
+    target.set(1);
+
+    expect(target._oldValue).to.be.undefined;
+    expect(target._curValue).to.be.equal(1);
+
+    target.set(1);
+
+    expect(target._oldValue).to.be.undefined;
+    expect(target._curValue).to.be.equal(1);
+
+    target.set(2);
+
+    expect(target._oldValue).to.be.equal(1);
+    expect(target._curValue).to.be.equal(2);
+
+    target.set(null);
+
+    expect(target._oldValue).to.be.equal(2);
+    expect(target._curValue).to.be.null;
+  });
+
+  it('_equalFunc should work', function() {
+    const target = new StdReactiveVar(undefined, (a, b) => a === b);
+
+    target.set(1);
+
+    expect(target._oldValue).to.be.undefined;
+    expect(target._curValue).to.be.equal(1);
+
+    target.set(1);
+
+    expect(target._oldValue).to.be.undefined;
+    expect(target._curValue).to.be.equal(1);
+
+    target.set(2);
+
+    expect(target._oldValue).to.be.equal(1);
+    expect(target._curValue).to.be.equal(2);
+
+  });
+
+  it('toString should work', function() {
+    const target = new StdReactiveVar(undefined);
+
+    expect(target.toString()).to.be.equal('StdReactiveVar{undefined}');
+
+    target.set(1);
+    expect(target.toString()).to.be.equal('StdReactiveVar{1}');
+
+    target.set(2);
+    expect(target.toString()).to.be.equal('StdReactiveVar{2}');
+
+  });
 });
 
 describe('reactive var with tracker', function() {
